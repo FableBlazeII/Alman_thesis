@@ -22,6 +22,7 @@ Baaslahendus
 * Kasutamiseks tuleb instaleerida Pythoni moodul bitarray 0.8.0 (https://pypi.python.org/pypi/bitarray)
 * Programm on testitud vaid Linuxi keskonnas (CentOS release 5.9 (Final))
 * Ei tööta Windowsi keskonnas kuna kasutab forkimist
+* Koondtabeli asukoht, protsesside, samaaegsete tööde, proovide ja koondtabeli ridade arvud on kmanageri koodi siise kirjutatud
 
 Lõpplahendus
 ============
@@ -29,5 +30,5 @@ Lõpplahendus
 * Programm on testitud vaid Linuxi keskonnas (CentOS release 5.9 (Final))
 * Programi kompileerimine on testitud vaid gcc 4.1.2 kompilaatoriga (kaasas on kompileerimiseks Makefile)
 * Ei tööta Windowsi keskonnas kuna kasutab forkimist
-* Eeldab, et arvutis on instaleeritud sqlite3 andmebaasi tarkvara, selliselt et kompilaatro on võimeline selle ülese leidma
-
+* Eeldab, et arvutis on instaleeritud sqlite3 andmebaasi tarkvara, selliselt et kompilaator on võimeline selle ülese leidma
+* * Koondtabeli asukoht, protsesside, samaaegsete tööde, proovide ja koondtabeli ridade arvud on kmanageri koodi siise kirjutatud
