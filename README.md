@@ -20,6 +20,7 @@ Baaslahendus
 * Kirjutatud programeerimiskeeles Python
 * Vajab kasutamiseks Pythoni versiooni 2.6+. Ei tööta versioonidel 3.0+
 * Kasutamiseks tuleb instaleerida Pythoni moodul bitarray 0.8.0 (https://pypi.python.org/pypi/bitarray)
+* Kasutamiseks tuleb instaleerida Pythoni moodul Pyro4 ja programmi koodis määrata kasutamiseks sobiv port (https://pypi.python.org/pypi/Pyro4)
 * Programm on testitud vaid Linuxi keskonnas (CentOS release 5.9 (Final))
 * Ei tööta Windowsi keskonnas kuna kasutab forkimist
 * Koondtabeli asukoht, protsesside, samaaegsete tööde, proovide ja koondtabeli ridade arvud on kmanageri koodi siise kirjutatud
