@@ -3,7 +3,7 @@
 import optparse, os, multiprocessing, time, re
 
 usage = "usage: %prog [options]"
-version = "%prog 1.0"
+version = "%prog 1.1"
 description = "Finds the frequency of all given motifs in the input table. Can spawn multiple processes."
 
 

@@ -1,7 +1,7 @@
 #!/usr/local/bin/python
 
 import sys, time, os, array, Pyro4, cPickle
-sys.path.append('/group/work/project/protobios/tools/bin/motSummary/helpers')
+sys.path.append('./Baaslahendus')
 import MotSum_worker
 from bitarray import bitarray
 
@@ -15,10 +15,8 @@ class Manager(object):
 	nextWorkID=0 #ID that is given to next submitted work (goes up every time work is submitted, resets to 0 if 1000 reached)
 
 	def __init__(self):
-		PepCount=79154950
-		BIG_SUMMARY='/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13.txt'
-		# PepCount=10000000
-		# BIG_SUMMARY='/group/work/project/protobios/2012_11_28_anti_katsetused/bigSummary_rand_1M_sorted.txt'
+		PepCount=10000
+		SUMMARY='/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13.txt'
 		
 		emptyVec=bitarray(PepCount)
 		emptyVec.setall(False)
@@ -34,7 +32,7 @@ class Manager(object):
 				print "Loaded vecList from pickle:"
 				print "/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13_BV.pkl"
 				sys.stdout.flush()
-			with open(BIG_SUMMARY) as BS:
+			with open(SUMMARY) as BS:
 				lines = BS.readlines(131072)
 				while lines:
 					for line in lines:
@@ -64,7 +62,7 @@ class Manager(object):
 				for j in range(12):
 					vecList[i].append(emptyVec.copy())
 
-			with open(BIG_SUMMARY) as BS:
+			with open(SUMMARY) as BS:
 				lineNumber=0
 				lines = BS.readlines(131072)
 				while lines:
@@ -110,11 +108,11 @@ class Manager(object):
 			self.BScounts=tuple( BScounts )
 			self.BSlocations=tuple( BSlocations )
 
-	def submitWork(self, motifList, outdir, noWaitFlag, addHeaderFlag):
+	def submitWork(self, motifList, outdir, noWaitFlag):
 		if self.nextWorkID==1000:
 			self.nextWorkID=0
 		if self.activeWorks < self.maxActiveWorks:
-			self.worksList[self.nextWorkID]=['Starting', motifList, outdir, noWaitFlag, addHeaderFlag]
+			self.worksList[self.nextWorkID]=['Starting', motifList, outdir, noWaitFlag]
 			self.activeWorks=self.activeWorks+1
 			forkPid=os.fork()
 			if forkPid==0:
@@ -128,7 +126,7 @@ class Manager(object):
 				sys.stdout.flush()
 				sys.exit(0)
 		else:
-			self.worksList[self.nextWorkID]=['Waiting', motifList, outdir, noWaitFlag, addHeaderFlag]
+			self.worksList[self.nextWorkID]=['Waiting', motifList, outdir, noWaitFlag]
 			self.workQueue.append(self.nextWorkID)
 		self.nextWorkID = self.nextWorkID + 1
 		sys.stdout.flush()

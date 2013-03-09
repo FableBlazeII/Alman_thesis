@@ -2,7 +2,7 @@
 
 import sys, operator, array, multiprocessing, traceback, Pyro4
 
-MAX_PROCESSES=1
+MAX_PROCESSES=10
 
 ##Salvestab iga motiivi stringina listi
 def genMotifsList(motifFile):
@@ -49,39 +49,15 @@ def calcCounts(motifsList, vecList, aminoPosMap, BScounts, BSlocations, result_q
 	else:
 		result_queue.send(allMotifCounts)
 
-def writeOutput(motifsList, allMotifCounts, OUT_FILE, addHeaderFlag):
+def writeOutput(motifsList, allMotifCounts, OUT_FILE):
 	with open(OUT_FILE, 'w') as outFile:
-		if addHeaderFlag!="False":
-			writeOutputHead(outFile)
 		outFile.write(motifsList[0]+'\t'+'\t'.join(str(x) for x in allMotifCounts[0]))
 		i=1
 		for motif in motifsList[1:]:
 			outFile.write('\n'+motif+'\t'+'\t'.join(str(x) for x in allMotifCounts[i]))
 			i=i+1
 
-#Generates the header lines (sampleID and case/control)
-def writeOutputHead(outFile):
-    BIG_SUMMARY_HEADER='/group/work/project/protobios/2013_01_28_BS_with29to36/dat/bigSummary_02_13_header.txt'
-    gmmSampleIdList=['Peptide']
-    caseCntrlList=['Peptide']
-    sampleIdList=['Peptide']
-    with open(BIG_SUMMARY_HEADER) as summaryHead:
-        atrList = summaryHead.readline().rstrip('\n').split('\t')
-        gmmSampleIdPos = atrList.index('GMM gmmSampleId')
-        caseCntrlPos = atrList.index('GMM caseCntrl')
-        sampleIdPos = atrList.index('GMM sampleId')
-        for line in summaryHead:
-            line = line.rstrip('\n').split('\t')
-            gmmSampleIdList.append(line[gmmSampleIdPos])
-            caseCntrlList.append(line[caseCntrlPos])
-            sampleIdList.append(line[sampleIdPos])
-            
-    outFile.write('\t'.join(gmmSampleIdList)+'\n')
-    outFile.write('\t'.join(caseCntrlList)+'\n')
-    outFile.write('\t'.join(sampleIdList)+'\n')
-
-
-def runWork(id, motifList, output, vecList, BScounts, BSlocations, addHeaderFlag):
+def runWork(id, motifList, output, vecList, BScounts, BSlocations):
 	motifCountManager=Pyro4.Proxy('PYRO:motifCountManager@localhost:50555')
 	motifCountManager.setWorkStarted(id)
 	try:
@@ -109,7 +85,7 @@ def runWork(id, motifList, output, vecList, BScounts, BSlocations, addHeaderFlag
 			for job in jobs:
 				job.join()
 			
-		writeOutput(motifsList, allMotifCounts, output, addHeaderFlag)
+		writeOutput(motifsList, allMotifCounts, output)
 	except:
 		print "Unexpected error:"
 		print "Type:", sys.exc_info()[0]

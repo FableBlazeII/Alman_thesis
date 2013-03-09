@@ -13,15 +13,13 @@ parser.add_option("-o", "--output", dest="output",
              help="Output table path and name (file will be overwriten)")
 parser.add_option("-m", "--motifList", dest="motifList",
              help="File containing new-line separated motifs to search for")
-parser.add_option("--addHeader", dest="addHeader", action="store_true",
-             help="Use this flag to add a headerline to output", default="False")
 parser.add_option("--noWait", dest="noWait", action="store_true",
              help="Use this flag to exit after job is submitted", default="False")
 
 (options, args) = parser.parse_args()
 
-def submitWork(motifList, output, noWaitFlag, addHeaderFlag):
-	return motifCountManager.submitWork(motifList, output, noWaitFlag, addHeaderFlag)
+def submitWork(motifList, output, noWaitFlag):
+	return motifCountManager.submitWork(motifList, output, noWaitFlag)
 
 def waitUntillFinished(id):
 	while True:
@@ -38,7 +36,7 @@ if options.output and options.motifList:
 	print "Works in list:",
 	print len(motifCountManager.checkAllWorks())
 	sys.stdout.flush()
-	id=submitWork(motifList, output, options.noWait, options.addHeader)
+	id=submitWork(motifList, output, options.noWait)
 	print "Work submitted."
 	sys.stdout.flush()
 	sTime=time.time()

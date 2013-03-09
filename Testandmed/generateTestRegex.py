@@ -6,7 +6,7 @@ expressionsCount=50
 minLen=2 #Set between 1 and 12
 maxLen=12 #Set between 1 and 12
 
-OUTPUT="./inputRegex.txt"
+OUTPUT="./Testandmed/inputRegex.txt"
 
 
 print "Output: ",
