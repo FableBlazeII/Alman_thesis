@@ -121,7 +121,7 @@ class Manager(object):
 				workStartTime=time.time()
 				print "started", os.getpid( )
 				sys.stdout.flush()
-				MotSum_worker.runWork(self.nextWorkID, self.worksList[self.nextWorkID][1], self.worksList[self.nextWorkID][2], self.vecList, self.BScounts, self.BSlocations, self.worksList[self.nextWorkID][4])
+				MotSum_worker.runWork(self.nextWorkID, self.worksList[self.nextWorkID][1], self.worksList[self.nextWorkID][2], self.vecList, self.BScounts, self.BSlocations)
 				if noWaitFlag!='False':
 					del self.worksList[self.nextWorkID]
 				print "finished", os.getpid( ), time.time()-workStartTime
@@ -156,7 +156,7 @@ class Manager(object):
 			if forkPid==0:
 				workStartTime=time.time()
 				print "started", os.getpid( )
-				MotSum_worker.runWork(id, self.worksList[id][1], self.worksList[id][2], self.vecList, self.BScounts, self.BSlocations, self.worksList[id][4])
+				MotSum_worker.runWork(id, self.worksList[id][1], self.worksList[id][2], self.vecList, self.BScounts, self.BSlocations)
 				if self.worksList[id][3]!='False':
 					del self.worksList[self.nextWorkID]
 				print "finished", os.getpid( ), time.time()-workStartTime

@@ -3,6 +3,7 @@
 import sys, operator, array, multiprocessing, traceback, Pyro4
 
 MAX_PROCESSES=10
+sampleCount=50
 
 ##Salvestab iga motiivi stringina listi
 def genMotifsList(motifFile):
@@ -19,7 +20,7 @@ def calcCounts(motifsList, vecList, aminoPosMap, BScounts, BSlocations, result_q
 	for motif in motifsList:
 		#Performs bitvector calculations
 		matchingLinesList=[]
-		motifCounts=[0]*1307
+		motifCounts=[0]*sampleCount
 		motifRange=range(12-len(motif)+1)
 		calcList=[[] for x in motifRange]
 		i=0
