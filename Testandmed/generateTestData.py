@@ -10,7 +10,8 @@ countMax=500
 
 
 letters=['A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y']
-possibleCounts=range(countMax)+[0]*(countMax*2)
+#The extra 0 are intended, it is probably the easiest (but not very effective) way to make the array sparse
+possibleCounts=range(countMax)+[0]*(countMax*4)
 
 print "Output: ",
 print os.path.abspath(OUTPUT)
