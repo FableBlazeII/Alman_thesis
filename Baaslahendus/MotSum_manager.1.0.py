@@ -9,6 +9,8 @@ from bitarray import bitarray
 
 class Manager(object):
 	maxActiveWorks=1 #Max number of works that can be active
+	
+	
 	activeWorks=0 #Counter of how many works are currently active (goes up and down as works start and finish)
 	worksList={} #Dictionary of all the works corrently tracked by the manager (cotains work parameters)
 	workQueue=[] #List of work id's waiting to be started
@@ -16,7 +18,7 @@ class Manager(object):
 
 	def __init__(self):
 		PepCount=10000
-		SUMMARY='/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13.txt'
+		SUMMARY='./Testandmed/inputSummary.txt'
 		
 		emptyVec=bitarray(PepCount)
 		emptyVec.setall(False)
