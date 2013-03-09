@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 
 import sys, time, os, array, Pyro4, cPickle
 sys.path.append('./Baaslahendus')

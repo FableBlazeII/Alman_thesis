@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 
 import sys, operator, array, multiprocessing, traceback, Pyro4
 
