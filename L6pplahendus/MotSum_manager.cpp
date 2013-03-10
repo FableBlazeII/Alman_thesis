@@ -12,6 +12,8 @@ using namespace std;
 
 const int pepCount=10000;
 const int sampleCount=100;
+int worksLimit=1;
+unsigned int processesLimit=10;
 
 //Initialize datastructures
 time_t start = time(NULL);
@@ -21,8 +23,7 @@ vector<vector <unsigned short > > BSlocations (pepCount);
 bitset<pepCount> ANDvec;
 bitset<pepCount> ORvec;
 
-int worksLimit=1;
-unsigned int processesLimit=1;
+
 string workID_start="";
 string motifFilePath_start="";
 string outFilePath_start="";
