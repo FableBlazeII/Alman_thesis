@@ -6,16 +6,19 @@
 #include <vector>
 #include <map>
 #include <sys/wait.h>
+#include <cstdlib>
 
 using namespace std;
 
+const int PepCount=100;
+
 //Initialize datastructures
 time_t start = time(NULL);
-bitset<79154950> vecList [240];
-vector<vector <unsigned int > > BScounts (79154950);
-vector<vector <unsigned short > > BSlocations (79154950);
-bitset<79154950> ANDvec;
-bitset<79154950> ORvec;
+bitset<PepCount> vecList [240];
+vector<vector <unsigned int > > BScounts (PepCount);
+vector<vector <unsigned short > > BSlocations (PepCount);
+bitset<PepCount> ANDvec;
+bitset<PepCount> ORvec;
 
 int worksLimit=1;
 unsigned int processesLimit=1;
