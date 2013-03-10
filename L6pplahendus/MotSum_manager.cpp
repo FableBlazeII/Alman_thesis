@@ -10,15 +10,16 @@
 
 using namespace std;
 
-const int PepCount=100;
+const int pepCount=10000;
+const int sampleCount=100;
 
 //Initialize datastructures
 time_t start = time(NULL);
-bitset<PepCount> vecList [240];
-vector<vector <unsigned int > > BScounts (PepCount);
-vector<vector <unsigned short > > BSlocations (PepCount);
-bitset<PepCount> ANDvec;
-bitset<PepCount> ORvec;
+bitset<pepCount> vecList [240];
+vector<vector <unsigned int > > BScounts (pepCount);
+vector<vector <unsigned short > > BSlocations (pepCount);
+bitset<pepCount> ANDvec;
+bitset<pepCount> ORvec;
 
 int worksLimit=1;
 unsigned int processesLimit=1;
@@ -71,8 +72,8 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 					}
 					ORvec|=ANDvec;
 				}
-				unsigned int resList[1306] = {0};
-				for (unsigned int l=0; l < 79154950; l++) {
+				unsigned int resList[sampleCount] = {0};
+				for (unsigned int l=0; l < pepCount; l++) {
 					if (ORvec[l]==1) {
 						for (unsigned int m=0; m < BSlocations[l].size(); m++) {
 							resList[BSlocations[l][m]]=resList[BSlocations[l][m]]+BScounts[l][m];
@@ -81,7 +82,7 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 				}
 				stringstream resOut;
 				resOut << motifList[i];
-				for (unsigned int n=0; n < 1306; n++) {
+				for (unsigned int n=0; n < sampleCount; n++) {
 					resOut << "\t" << resList[n];
 				}
 				resOut << endl;
@@ -112,8 +113,8 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 								}
 								ORvec|=ANDvec;
 							}
-							unsigned int resList[1306] = {0};
-							for (unsigned int l=0; l < 79154950; l++) {
+							unsigned int resList[sampleCount] = {0};
+							for (unsigned int l=0; l < pepCount; l++) {
 								if (ORvec[l]==1) {
 									for (unsigned int m=0; m < BSlocations[l].size(); m++) {
 										resList[BSlocations[l][m]]=resList[BSlocations[l][m]]+BScounts[l][m];
@@ -122,7 +123,7 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 							}
 							stringstream resOut;
 							resOut << motifList[i];
-							for (unsigned int n=0; n < 1306; n++) {
+							for (unsigned int n=0; n < sampleCount; n++) {
 								resOut << "\t" << resList[n];
 							}
 							resOut << '\n';
@@ -147,8 +148,8 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 								}
 								ORvec|=ANDvec;
 							}
-							unsigned int resList[1306] = {0};
-							for (unsigned int l=0; l < 79154950; l++) {
+							unsigned int resList[sampleCount] = {0};
+							for (unsigned int l=0; l < pepCount; l++) {
 								if (ORvec[l]==1) {
 									for (unsigned int m=0; m < BSlocations[l].size(); m++) {
 										resList[BSlocations[l][m]]=resList[BSlocations[l][m]]+BScounts[l][m];
@@ -156,7 +157,7 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 								}
 							}
 							resOut << motifList[i];
-							for (unsigned int n=0; n < 1306; n++) {
+							for (unsigned int n=0; n < sampleCount; n++) {
 								resOut << "\t" << resList[n];
 							}
 							resOut << endl;
@@ -180,8 +181,8 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 								}
 								ORvec|=ANDvec;
 							}
-							unsigned int resList[1306] = {0};
-							for (unsigned int l=0; l < 79154950; l++) {
+							unsigned int resList[sampleCount] = {0};
+							for (unsigned int l=0; l < pepCount; l++) {
 								if (ORvec[l]==1) {
 									for (unsigned int m=0; m < BSlocations[l].size(); m++) {
 										resList[BSlocations[l][m]]=resList[BSlocations[l][m]]+BScounts[l][m];
@@ -189,7 +190,7 @@ int runCountWork(string work_id, string motifFilePath_start, string outFilePath_
 								}
 							}
 							resOut << motifList[i];
-							for (unsigned int n=0; n < 1306; n++) {
+							for (unsigned int n=0; n < sampleCount; n++) {
 								resOut << "\t" << resList[n];
 							}
 							resOut << '\n';
@@ -270,7 +271,7 @@ int main(int argc, char *argv[]) {
 	string line;
 	int indexCount=0;
 	int lineNumber=0;
-	ifstream BS ("/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13.txt");
+	ifstream BS ("./Testandmed/inputSummary.txt");
 	if (BS.is_open()) {
 		string peptide;
 		string count;
@@ -318,7 +319,7 @@ int main(int argc, char *argv[]) {
 	
 	//Check status of works (interval 60s), infinate loop untill manager is killed
 	while(1) {
-		sleep(60);
+		sleep(30);
 		error = sqlite3_open("workListDB.sqlite", &database);
 		if (error) {
 			cout << "Check for work: Error opening database (" << error << ")" << endl;

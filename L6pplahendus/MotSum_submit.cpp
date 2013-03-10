@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
 		
 		//Loop every 30s untill work finished
 		while (1) {
-			sleep(30);
+			sleep(15);
 			error = sqlite3_open("workListDB.sqlite", &database);
 			if (error) {
 				cout << "Check: Can not open database (" << error << ")" << endl;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
 				return 1;
 			}
 			sqlite3_close(database);
-			if (workStatus=="FINISHED") break;
+			if (workStatus=="Finished") break;
 		}
 	}
 	

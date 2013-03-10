@@ -1,7 +1,7 @@
 MANAGER = MotSum_manager
 SUBMIT = MotSum_submit
 
-CFLAGS = -Wall -O3
+CFLAGS = -O3
 
 all: $(MANAGER) $(SUBMIT)
 
