@@ -3,7 +3,7 @@
 import sys, operator, array, multiprocessing, traceback, Pyro4
 
 MAX_PROCESSES=10
-sampleCount=50
+sampleCount=100
 
 ##Salvestab iga motiivi stringina listi
 def genMotifsList(motifFile):

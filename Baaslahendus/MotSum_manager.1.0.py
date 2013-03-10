@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys, time, os, array, Pyro4, cPickle
-sys.path.append('./Baaslahendus')
+sys.path.append(os.path.abspath('./Baaslahendus/'))
 import MotSum_worker
 from bitarray import bitarray
 
@@ -19,7 +19,6 @@ class Manager(object):
 	def __init__(self):
 		PepCount=10000
 		SUMMARY='./Testandmed/inputSummary.txt'
-		
 		emptyVec=bitarray(PepCount)
 		emptyVec.setall(False)
 		aminoPosMap={'A':0,'C':1,'D':2,'E':3,'F':4,'G':5,'H':6,'I':7,'K':8,'L':9,'M':10,'N':11,'P':12,'Q':13,'R':14,'S':15,'T':16,'V':17,'W':18,'Y':19}
@@ -29,10 +28,10 @@ class Manager(object):
 		BSlocations=[]
 		
 		try:
-			with open('/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13_BV.pkl', 'rb') as pkl_file:
+			with open(SUMMARY+'.pkl', 'rb') as pkl_file:
 				vecList=cPickle.load(pkl_file)
 				print "Loaded vecList from pickle:"
-				print "/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13_BV.pkl"
+				print SUMMARY+'.pkl'
 				sys.stdout.flush()
 			with open(SUMMARY) as BS:
 				lines = BS.readlines(131072)
@@ -55,7 +54,7 @@ class Manager(object):
 			self.BSlocations=tuple( BSlocations )
 			
 		except IOError, UnpicklingError:
-			print "Can't load vecList from pickle. Building from bigSummary."
+			print "Can't load vecList from pickle. Building from summary."
 			sys.stdout.flush()
 			
 			#Generate initial vecList
@@ -98,14 +97,14 @@ class Manager(object):
 						lineNumber=lineNumber+1
 					lines=BS.readlines(131072)
 			vecList=tuple(tuple(x) for x in vecList)
-			try:
-				with open('/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13_BV.pkl', 'wb') as pkl_file:
-					cPickle.dump(vecList, pkl_file, 2)
-					print "Created vecList pickle:"
-					print "/group/work/project/protobios/2013_01_28_BS_with29to36/dat/purifiedBS/bigSummary_02_13_BV.pkl"
-					sys.stdout.flush()
-			except:
-				print "Can not create vecList pickle. Continuing..."
+			#try:
+			#	with open(SUMMARY+'.pkl', 'wb') as pkl_file:
+			#		cPickle.dump(vecList, pkl_file, 2)
+			#		print "Created vecList pickle:"
+			#		print SUMMARY+'.pkl'
+			#		sys.stdout.flush()
+			#except:
+			#	print "Can not create vecList pickle. Continuing..."
 			self.vecList=vecList
 			self.BScounts=tuple( BScounts )
 			self.BSlocations=tuple( BSlocations )
