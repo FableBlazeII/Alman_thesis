@@ -1,3 +1,7 @@
+NB! Täpsem info ja testimisjuhend failis README.txt!
+
+
+
 Alman_thesis
 ============
 
@@ -9,8 +13,6 @@ Need programmid täidavad sama ülesannet, aga erinevad tugevalt kiiruse poolest
 
 
 Järgnevalt on toodud põgus ülevaade repos olevatest programmidest
-
-NB! Täpsem info ja testimisjuhend failis README.txt!
 
 
 Naiivne lahendus
