@@ -8,7 +8,9 @@ Repositoorium sisaldab Anti Almani bakalaureusetöö käigus välja arendatud ko
 Need programmid täidavad sama ülesannet, aga erinevad tugevalt kiiruse poolest. Programmide nõuded on erinevad
 
 
-Järgnevalt on toodud põgus ülevaade repos olevatest programmidest (täpsem info ja testimisjuhend failis README.txt)
+Järgnevalt on toodud põgus ülevaade repos olevatest programmidest
+
+NB! Täpsem info ja testimisjuhend failis README.txt!
 
 
 Naiivne lahendus
