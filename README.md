@@ -1,11 +1,18 @@
+NB! Täpsem info ja testimisjuhend failis README.txt!
+
+
+
 Alman_thesis
 ============
 
 Piiratud võimsusega regulaaravaldistele sobituave sõnade leidmine
 
 
-Repositoorium sisaldab anti Almani bakalaureusetöö käigus välja arendatud kolme programmi.
+Repositoorium sisaldab Anti Almani bakalaureusetöö käigus välja arendatud kolme programmi.
 Need programmid täidavad sama ülesannet, aga erinevad tugevalt kiiruse poolest. Programmide nõuded on erinevad
+
+
+Järgnevalt on toodud põgus ülevaade repos olevatest programmidest
 
 
 Naiivne lahendus
