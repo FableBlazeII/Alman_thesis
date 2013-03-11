@@ -18,4 +18,4 @@ MotSum_submit.o: MotSum_submit.cpp
 	$(CXX) -c MotSum_submit.cpp -o MotSum_submit.o $(CFLAGS)
 
 clean:
-	rm *.o MotSum_submit
+	rm *.o MotSum_submit MotSum_manager
